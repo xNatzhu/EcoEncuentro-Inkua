@@ -1,0 +1,26 @@
+.city-button {
+    position: absolute;
+    top: 10px; /* Ajusta el espacio entre el margen superior y el botón */
+    right: 10px; /* Posición a la derecha */
+    z-index: 1; /* Asegura que esté por encima de la imagen */
+}
+  
+.city-button .btn {
+    width: 100%; /* Haz que el botón ocupe el ancho completo de su contenedor */
+}
+
+.custom-card {
+    background: url('../Imagenes-cards/Marco-card.png') no-repeat center center;
+    background-size: cover;
+    padding: 20px; /* Añade espacio entre el contenido y el borde */
+    border: 1px solid #ccc; /* Agrega un borde */
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3); /* Agrega sombra abajo y a la derecha */
+    border-radius: 10px; /* Redondea las esquinas */
+}
+
+.card-image {
+    width: 100%; /* Establece un ancho del 100% para que la imagen ocupe todo el ancho de su contenedor */
+    height: 200px; /* Establece una altura fija (ajusta el valor según tus preferencias) */
+    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
+}
+  
