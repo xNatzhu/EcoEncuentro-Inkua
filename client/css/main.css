@@ -1,0 +1,23 @@
+/*reset*/
+
+*{
+    margin:0;
+    padding:0;
+    border:none;
+    box-sizing: border-box;
+    outline:none;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* setting: body-main-html*/
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
