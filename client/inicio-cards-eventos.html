@@ -18,8 +18,11 @@
                     <button type="button" class="btn btn-success">MIRAMAR</button>
                 </div>
                 <img src="Imagenes-cards/contaminacion.png" class="card-img-top card-image" alt="limpiando el mar">
-                <div class="card-body">
-                  <h5 class="card-title">LIMPIANDO MARES</h5>
+                <div class="card-body ">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">LIMPIANDO MARES</h5>
+                    <i class="bi-heart favorite-icon"></i>
+                  </div>                  
                   <p class="text-success">01/12/2023</p>
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Consequatur consequuntur nesciunt vel fugit dolore eaque repellat, totam corporis 
@@ -39,7 +42,10 @@
                 </div>
                 <img src="Imagenes-cards/evento.png" class="card-img-top card-image" alt="Evento al aire libre">
                 <div class="card-body">
-                  <h5 class="card-title">LOS PIES EN EL PASTO</h5>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">LOS PIES EN EL PASTO</h5>
+                    <i class="bi-heart favorite-icon"></i>
+                  </div>                  
                   <p class="text-success">04/02/2024</p>
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Consequatur consequuntur nesciunt vel fugit dolore eaque repellat, totam corporis 
@@ -59,7 +65,10 @@
                 </div>
                 <img src="Imagenes-cards/adopcion.png" class="card-img-top card-image" alt="Perro en adopción">
                 <div class="card-body">
-                  <h5 class="card-title">LOS PIES EN EL PASTO</h5>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">ADOPTANDO PATAS</h5>
+                    <i class="bi-heart favorite-icon"></i>
+                  </div> 
                   <p class="text-success">26/11/2024</p>
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Consequatur consequuntur nesciunt vel fugit dolore eaque repellat, totam corporis 
@@ -80,7 +89,10 @@
                 </div>
                 <img src="Imagenes-cards/hogar02.png" class="card-img-top card-image" alt="Niñops reciclando">
                 <div class="card-body">
-                  <h5 class="card-title">APRENDER RECICLANDO</h5>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">APRENDER RECICLANDO</h5>
+                    <i class="bi-heart favorite-icon"></i>
+                  </div>                   
                   <p class="text-success">26/11/2024</p>
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Consequatur consequuntur nesciunt vel fugit dolore eaque repellat, totam corporis 
@@ -94,7 +106,23 @@
               </div>
             </div>            
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" 
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Cambia la clase del icono para rellenarlo de rojo al hacer clic --> 
+    <script>
+      $(document).ready(function() {
+        $(".favorite-icon").click(function() {
+          $(this).toggleClass("bi-heart bi-heart-fill text-danger"); 
+        });
+      });
+    </script>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 </html>
