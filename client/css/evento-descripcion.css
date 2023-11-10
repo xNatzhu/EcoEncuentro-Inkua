@@ -1,0 +1,28 @@
+/* Estilos de imagen de portada*/
+.portada {
+    width: 100%;
+    margin: 50px auto 0;
+    text-align: center; /* Centrar el contenido interno, en este caso, la imagen */
+}
+
+/* Estilos de los botones de navegación que figuran debajo de la portada*/
+.nav-item {
+    color: #000; /* Cambia el color de los enlaces a negro */
+    font-weight: bold; /* Añade negrita al texto de los enlaces */
+    margin-left: 65px;
+}
+
+.imagen-central-evento {
+    width: 100%;
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+/* Agrego estilo a la imágen central del evento para que siempre sean iguales las imágenes
+y no dependan de las medidas que el usuario suba*/
+.imagen-recortada {
+    width: 1190px;
+    height: 365px;
+    object-fit: cover;
+}
+
