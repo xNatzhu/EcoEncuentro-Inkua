@@ -19,23 +19,16 @@
     <!--Sección Descripción de eventos: muestra las tarjetas a partir del btn "Ver más" de las cards eventos
     de la página principal-->
     <div class="portada">
-        <img src="img_evento-descripcion/Evento.png" alt="Imagen de portada">
-        <!-- El nav de posicionamiento no me gusta como quedó, si lo quieren/pueden arreglar bienvenido-->
-        <nav class="navbar">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">INICIO</a>
-                </li>
-                <li class="nav-item">
-                    <span class="text-success">|</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-success" href="#">EVENTO</a>
-                </li>
-            </ul>
-        </nav>
+        <img src="img_evento-descripcion/Evento.png" alt="Imagen de portada" class="img-fluid d-block mx-auto">        
     </div>
-    <div class="imagen-central-evento">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">INICIO</a></li>
+          <li class="breadcrumb-item active" aria-current="page">EVENTO</li>
+        </ol>
+      </nav>
+          
+    <div class="imagen-central-evento ">
         <img src="img_evento-descripcion/contaminacion marina 02.png" 
         alt="Personas limpiando la playa" class="imagen-recortada">
     </div>
@@ -66,7 +59,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                     ut labore et dolore magna aliqua. Lobortis mattis aliquam faucibus purus in massa tempor. 
                     Eget nunc scelerisque viverra mauris in aliquam sem. Morbi leo urna molestie at elementum 
-                    eu facilisis. Pellentesque id nibh tortor id aliquet lectus proin nibh nisl. Aliquam etiam 
+                    eu facilisis. Pellentesque id nibh tortor id aliquet lectus proin nibh nisl. <br> Aliquam etiam 
                     erat velit scelerisque. Sit amet purus gravida quis blandit turpis cursus in. Ut faucibus 
                     pulvinar elementum integer. Varius quam quisque id diam vel quam elementum pulvinar etiam.</p>
             </div>

@@ -26,3 +26,8 @@ y no dependan de las medidas que el usuario suba*/
     object-fit: cover;
 }
 
+.breadcrumb {
+    color: #000000; 
+    font-weight: bold; 
+    margin-left: 65px;
+}
