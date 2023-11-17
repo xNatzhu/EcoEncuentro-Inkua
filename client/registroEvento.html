@@ -1,0 +1,121 @@
+<!-- HTML: formulario -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Eventos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="..."
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="styles_registro.css" />
+  </head>
+  <body>
+    <div class="text-center mt-0.5 mb-8">
+      <h1 class="display-6 text-success">¡ Crea tu propio impacto verde !</h1>
+    </div>
+    <br /><br />
+    <br />
+
+    <section class="container d-flex align-items-center justify-content-center">
+      <div class="card">
+        <h1 class="card-title h2">Registro de evento</h1>
+        <form id="eventForm">
+          <!-- Cambiado a un select con opciones predefinidas -->
+          <div class="mb-2">
+            <label for="eventCategory" class="form-label"
+              >Categoría de evento:</label
+            >
+            <select
+              class="form-select"
+              id="eventCategory"
+              name="eventCategory"
+              required
+            >
+              <option value="" selected disabled>
+                Selecciona una categoría
+              </option>
+              <option value="concierto">Basurales</option>
+              <option value="feria">Animales</option>
+              <option value="conferencia">Arboles</option>
+              <option value="concierto">Contaminación</option>
+              <option value="feria">Fauna marina</option>
+              <option value="conferencia">Industria</option>
+              <option value="concierto">Hogar</option>
+              <option value="feria">Energia</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label for="eventCity" class="form-label">Ciudad:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="eventCity"
+              name="eventCity"
+              required
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="eventDate" class="form-label">Fecha del Evento:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="eventDate"
+              name="eventDate"
+              required
+            />
+          </div>
+
+          <div class="mb-2">
+            <label for="eventDescription" class="form-label"
+              >Descripción del Evento:</label
+            >
+            <textarea
+              class="form-control"
+              id="eventDescription"
+              name="eventDescription"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="mb-2">
+            <label for="eventImage" class="form-label"
+              >Subir hasta tres imágenes:</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="eventImage"
+              name="eventImage"
+              accept="image/*"
+              multiple
+            />
+            <!-- El atributo "multiple" permite seleccionar varios archivos -->
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="registerEvent()"
+          >
+            Crear Evento
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="..."
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
