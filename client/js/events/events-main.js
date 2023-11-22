@@ -38,6 +38,9 @@ function createCards(data) {
       isFavorite = parsedFavorite.some((element2) => element2._id === element._id);
     }
 
+
+    let date = new Date(element.eventDate);
+    var dataPrint = date.toISOString().split('T')[0].split('-').reverse().join('-');
     card += `
       <div class="col">
         <div class="card h-100 custom-card">
@@ -52,7 +55,7 @@ function createCards(data) {
                 <i class="favorite-icon ${isFavorite?(" bi bi-heart-fill text-danger"):("bi bi-heart")}" id="heartIcon_${element._id}"></i>
               </button>
             </div>
-            <p class="text-success">01/12/2023</p>
+            <p class="text-success">${dataPrint}</p>
             <p class="card-text">${element.description}</p>
           </div>
           <div class="d-flex justify-content-center">
