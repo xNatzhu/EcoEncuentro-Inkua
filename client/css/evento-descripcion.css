@@ -1,0 +1,37 @@
+/* Estilos de imagen de portada*/
+.portada {
+    width: 100%;
+    margin: 50px auto 0;
+    text-align: center; /* Centrar el contenido interno, en este caso, la imagen */
+}
+
+
+
+.imagen-central-evento {
+    width: 100%;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+/* Agrego estilo a la imágen central del evento para que siempre sean iguales las imágenes
+y no dependan de las medidas que el usuario suba*/
+.imagen-recortada {
+    width: 100%;
+    height: 365px;
+    object-fit: cover;
+}
+
+
+.img-profile{
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.subtitle-detail{
+    border-left: #448334 4px solid;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding-left: 10px;
+}

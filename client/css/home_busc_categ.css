@@ -1,0 +1,199 @@
+
+  .container-con-fondo {
+    background-image: url(../img-categorias/fotofondo.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    border-radius: 5px;
+    padding: 10%; 
+    width: 100%; 
+    height: 5%;  
+  }
+  .categoria{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    width: 80%; 
+    display: flex; 
+  }
+  
+  input.form-control {
+    flex: 1; 
+    height: 40px; 
+    font-size: 16px; 
+  }
+  
+  .search-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  .breadcrumb {
+    color: #000000; 
+    font-weight: bold; 
+    margin-left: 65px;
+}
+
+
+  .story-icon {
+    width: 30px; 
+    height: 30px;
+    background-color: rgb(170, 216, 157); 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .categoria-icon {
+    width: 70px; 
+    height: 70px;
+    background-color: none; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+  }
+  
+  .categoria-icon img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .categorias {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    width: 100%;
+  }
+
+  .story-icon {
+    max-width: 100px; 
+    padding: 10px; 
+  }
+  
+
+  .categoria-arboles {
+    margin-top: 5px; 
+    font-weight: bold; 
+  }
+  
+  .form{
+
+    position: relative;
+}
+
+.form .fa-search{
+
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #9ca3af;
+
+}
+
+.form span{
+
+    position: absolute;
+    right: 17px;
+    top: 10px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+
+}
+
+.left-pan{
+    padding-left: 7px;
+}
+
+.left-pan i{
+   
+   padding-left: 10px;
+}
+
+.form-input{
+
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus{
+    box-shadow: none;
+    border:none;
+}
+
+input:focus{
+    outline: 0px solid #d1d5db !important;
+    box-shadow: 0px 0px 0px 0px #d1d5db !important;
+    border: 2px solid #448334 !important;
+}
+
+input{
+  border: 2px solid #44833400 !important;
+}
+
+
+/* Ocultar el radio */
+.radio-input {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Estilo del contenedor del botón de opción */
+.categoria-label {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Cambiar el color del texto cuando se hace clic en el botón de opción */
+.radio-input:checked + .categoria-label .categoria-arboles {
+  color: red; /* Cambia el color según tus preferencias */
+}
+
+/* Estilos adicionales si es necesario */
+.categoria-label:hover {
+  background-color: #f0f0f0;
+}
+
+.categoria-label:active {
+  background-color: #e0e0e0;
+}
+
+
+.form-check-input{
+  border: 1px solid #448334;
+}
+
+input[type="checkbox"] {
+  border: 2px solid #28a745 !important;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #28a745 !important;
+  border: 2px solid #28a745 !important;
+}
+
+
+.container-check{
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.container-check-body{
+  display: flex;
+  width: 100px;
+}
