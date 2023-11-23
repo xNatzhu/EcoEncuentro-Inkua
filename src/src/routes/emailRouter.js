@@ -10,7 +10,7 @@ const { ipCheck, apiLimiter } = require("../middleware/securityMiddleware");
 // Endpoint for send email the user requested
 router.post("/password", apiLimiter, passwordReset);
 // Redirect endpoint to frontend with token and the user email
-router.get("/password/:token", redirect);
+router.get("/passwordRedirect/:token", redirect);
 // Change the password endpoint
 router.post("/password/confirm", jsonWebTokenVerify , apiLimiter, confirmPasswordReset);
 router.all("/", badMethod);

@@ -46,9 +46,11 @@ module.exports = {
         const resetToken = token; 
     
         // Generate link and send via Email to the user
-        const resetLink = `https://eco-encuentro/api/reset/password/${resetToken}?email=${email}`;  
+        const resetLink = `http://127.0.0.1:3000/api/email/passwordRedirect/${resetToken}?email=${email}`;  
         sendResetEmail(email, resetLink, userName);
     
+        console.log("redirect Link:" + resetLink);
+
         return res.status(200).json({ message: "Password reset email sent successfully" });
     } catch (error) {
         console.log(error);
@@ -65,8 +67,11 @@ module.exports = {
         };
 
         // when the user is sended by the email to this endpoint function, redirect the user to the Frontend, with the token and user email.
-        const redirectURL = `https://URL-TO.REDIRECT/password-reset.html?token=${token}&email=${email}`; // URL del front.
+        const redirectURL = `http://127.0.0.1:5500/client/password-recovery-confirm.html?token=${token}&email=${email}`; // URL del front.
+        // Test, change on DEPLOY.
         // URL OF FROTNEND, WE SENDING THE TOKEN AND EMAIL, THE FRONTEND SHOULD SEND THIS FOR THE RECOVER OF PASSWROD
+
+        console.log('Redireccionando a:', redirectURL);
 
         return res.status(302).redirect(redirectURL);
     },

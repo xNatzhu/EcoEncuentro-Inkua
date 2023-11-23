@@ -15,6 +15,17 @@
     background-position: center;
   }
   
+  .bg-image-password-recovery {
+    background-image: url('https://www.machupicchuterra.com/wp-content/uploads/parque-gueppi-sekime-media.jpg?w=1600&h=900');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .bg-image-password-recovery-confirm {
+    background-image: url('https://cuentamedelunicel.files.wordpress.com/2019/05/plantacion.jpg');
+    background-size: cover;
+    background-position: center;
+  }
   
   .btn-login {
     font-size: 0.9rem;
@@ -38,6 +49,3 @@
   .register{
     color: #448334;
 }
-
-
-  
