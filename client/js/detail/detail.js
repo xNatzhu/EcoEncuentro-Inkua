@@ -23,9 +23,9 @@ function getData() {
         <div class="row">
             <!-- Autores: Foto y nombre -->
             <div class="col-12 col-md-6 m-2 d-flex align-items-center">
-                <img src="${dataEvents.createdBy.userImg}" alt="Foto de perfil del autor/a" class="mr-3 img-profile">
+                <img src="${dataEvents.usersJoined.userImage}" alt="Foto de perfil del autor/a" class="mr-3 img-profile">
                 <div class="texto">
-                    <h6>${dataEvents.createdBy.name}</h6>
+                    <h6>${dataEvents.usersJoined.userName}</h6>
                 </div>
             </div>
             <!-- Titulo del evento -->

@@ -32,13 +32,13 @@ function createCards(data) {
           <img src="${element.eventImg}" class="card-img-top card-image" alt="limpiando el mar">
           <div class="card-body ">
             <div class="d-flex justify-content-between align-items-center">
-              <h5 class="card-title">${element.title}</h5>
+              <h5 class="card-title">${element.title.slice(0, 20).concat('...')}</h5>
               <button onClick="toggleFavorite('${element._id}')">
                 <i class="favorite-icon ${isFavorite?(" bi bi-heart-fill text-danger"):("bi bi-heart")}" id="heartIcon_${element._id}"></i>
               </button>
             </div>
             <p class="text-success">${dataPrint}</p>
-            <p class="card-text">${element.description}</p>
+            <p class="card-text"> ${element.description.split(' ').slice(0, 10).join(' ')}...</p>
           </div>
           <div class="d-flex justify-content-center">
             <button onclick="probando()" class="btn btn-outline-success" href="#">ASISTIR</button>
