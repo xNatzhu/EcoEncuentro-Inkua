@@ -1,0 +1,37 @@
+.login {
+    min-height: 100vh;
+  }
+  
+  .bg-image {
+    background-image: url('https://www.argentina.gob.ar/sites/default/files/aguara_guazu_pn_pilcomayo_alvaro_becerra_perez_05.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    background-color: #448334;
+  }
+
+  .btn-login:hover{
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    background-color: #448334;
+  }
+
+  input:focus{
+    box-shadow: none !important;
+    border: 2px solid #448334 !important;
+  }
+  
+  .register{
+    color: #448334;
+}
+
+
+  
