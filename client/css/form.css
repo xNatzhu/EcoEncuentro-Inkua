@@ -1,5 +1,6 @@
 .login {
     min-height: 100vh;
+    background: url('../Imagenes-cards/Marco.png') no-repeat center center;
   }
   
   .bg-image {
@@ -8,7 +9,12 @@
     background-position: center;
   }
   
-
+  .bg-image-register {
+    background-image: url('https://static.nationalgeographicla.com/files/styles/image_3200/public/01_oceancreatures_mjed49.jpg?w=1600&h=900');
+    background-size: cover;
+    background-position: center;
+  }
+  
   
   .btn-login {
     font-size: 0.9rem;
