@@ -22,12 +22,15 @@ function getData() {
     </div>
         <div class="row">
             <!-- Autores: Foto y nombre -->
-            <div class="col-12 col-md-6 m-2 d-flex align-items-center">
-                <img src="${dataEvents.usersJoined.userImage}" alt="Foto de perfil del autor/a" class="mr-3 img-profile">
-                <div class="texto">
-                    <h6>${dataEvents.usersJoined.userName}</h6>
-                </div>
+            <div class="col-12 col-md-6 m-2 d-flex align-items-center mt-3 mb-3">
+            <img src="${dataEvents.createdBy[0].eventOwnerImg}" alt="Foto de perfil del autor/a" class="rounded-circle img-profile">
+            <div class="d-flex flex-column">
+                <h6 class="text-capitalize mb-0">${dataEvents.createdBy[0].eventOwnerName}</h6>
+                <!-- Agrega cualquier otro contenido aquí -->
             </div>
+        </div>
+        
+        
             <!-- Titulo del evento -->
             <div class="col-12 col-md-6 m-2">
                 <div class="subtitle-detail">
