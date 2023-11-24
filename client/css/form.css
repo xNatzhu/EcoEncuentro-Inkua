@@ -21,12 +21,18 @@
     background-position: center;
   }
   
+  .bg-image-contacto {
+    background-image: url('http://www.minec.gob.ve/wp-content/uploads/2019/01/2_guacamaya_22141_1_600.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
   .bg-image-password-recovery-confirm {
     background-image: url('https://cuentamedelunicel.files.wordpress.com/2019/05/plantacion.jpg');
     background-size: cover;
     background-position: center;
   }
-  
+
   .btn-login {
     font-size: 0.9rem;
     letter-spacing: 0.05rem;
