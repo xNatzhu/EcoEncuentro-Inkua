@@ -1,0 +1,189 @@
+<!-- HTML: formulario -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Eventos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="..."
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="" />
+    <style>
+      body {
+        background-image: url("img_event/Sin\ título-1\ 1.png"); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen */
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .card {
+        width: 50%;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #e9f0e9;
+        box-shadow: 0 8px 16px rgba(203, 222, 204, 0.2);
+        background-color: #f5faf5;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="img-logo/logo.png" alt="Logo de Mi Sitio" height="70" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"><img src="" alt="" /></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="bi bi-house"></i> INICIO</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">EVENTO </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAVORITO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">NOSOTROS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CONTACTO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CERRAR SESIÓN</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br /><br />
+    <div class="card mx-auto text-center" style="max-width: 600px">
+      <h1 class="card-title h2">Registro de evento</h1>
+      <form id="eventForm">
+        <!-- Cambiado a un select con opciones predefinidas -->
+        <div class="mb-2">
+          <label for="eventCategory" class="form-label"
+            >Categoría de evento:</label
+          >
+          <select
+            class="form-select"
+            id="eventCategory"
+            name="eventCategory"
+            required
+          >
+            <option value="" selected disabled>Selecciona una categoría</option>
+            <option value="concierto">Basurales</option>
+            <option value="feria">Animales</option>
+            <option value="conferencia">Arboles</option>
+            <option value="concierto">Contaminación</option>
+            <option value="feria">Fauna marina</option>
+            <option value="conferencia">Industria</option>
+            <option value="concierto">Hogar</option>
+            <option value="feria">Energia</option>
+            <!-- Agrega más opciones según sea necesario -->
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="eventCity" class="form-label">Ciudad:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="eventCity"
+            name="eventCity"
+            required
+          />
+        </div>
+
+        <div class="mb-2">
+          <label for="eventDate" class="form-label">Fecha del Evento:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="eventDate"
+            name="eventDate"
+            required
+          />
+        </div>
+
+        <div class="mb-2">
+          <label for="eventDescription" class="form-label"
+            >Descripción del Evento:</label
+          >
+          <textarea
+            class="form-control"
+            id="eventDescription"
+            name="eventDescription"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <div class="mb-2">
+          <label for="eventImage" class="form-label">Subir imágen:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="eventImage"
+            name="eventImage"
+            accept="image/*"
+            multiple
+          />
+          <br /><br />
+        </div>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="registerEvent()"
+          >
+            Crear Evento
+          </button>
+        </div>
+      </form>
+    </div>
+    <br /><br />
+    <footer
+      class="text-center text-white"
+      style="background-color: #33363f; height: 100px; margin-top: 50px"
+    >
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <hr class="flex-grow-1 mx-3 border-success" style="height: 10px" />
+        <img
+          src="img-logo/logo.png"
+          alt="Logo"
+          class="img-fluid"
+          style="max-height: 100%; max-width: 100%"
+        />
+        <hr class="flex-grow-1 mx-3 border-success" style="height: 10px" />
+      </div>
+
+      <!-- Texto de Copyright -->
+      <div class="text-center text-white p-3" style="background-color: #33363f">
+        © 2023 Copyright. EcoEncuentro. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="..."
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
