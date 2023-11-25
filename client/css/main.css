@@ -35,3 +35,16 @@ body{
 .active{
     color: #448334 !important;
 }
+
+
+/*navBar*/
+
+.nav-link{
+    color: #161616 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    padding: 0 10px;
+    transition: all 0.3s ease-in-out;
+    background-color: #33363F !important;
+}
