@@ -1,7 +1,9 @@
-const registerForm = document.getElementById("formLogin");
+const formLogin = document.getElementById("formLogin");
+
 const token = sessionStorage.getItem("token");
 
-registerForm.addEventListener("submit", function (e) {
+
+formLogin.addEventListener("submit", function (e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -10,7 +12,7 @@ registerForm.addEventListener("submit", function (e) {
         "email": email,
         "password": password
     };
-
+    console.log(params);
     loginUser(params);
 });
 
@@ -27,7 +29,6 @@ function loginUser(params) {
     })
     .then(response => {
         if (!response.ok) {
-            console.log(data);
             Swal.fire({
                 icon: "error",
                 title: `Los datos ingresados no son correctos`,
@@ -45,8 +46,11 @@ function loginUser(params) {
             title: "Has ingresado exitosamente",
             confirmButtonColor: "#8db596"
         });  
-        sessionStorage.setItem("token", data.token);
-        window.location.href = "/client/index.html"
+       
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", data.user);
+
+        window.location.href = "./index.html"
         // Aquí puedes manejar la respuesta del servidor
     })
     .catch(error => {

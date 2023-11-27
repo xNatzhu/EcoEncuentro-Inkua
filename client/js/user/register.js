@@ -1,5 +1,4 @@
 const registerForm = document.getElementById("formRegister");
-const token = sessionStorage.getItem("token");
 
 registerForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -43,7 +42,9 @@ function registerUser(params) {
             title: "Usuario registrado exitosamente",
             confirmButtonColor: "#8db596"
         });  
-        sessionStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", data._id);
+        window.location.href = "./index.html"
         // Aquí puedes manejar la respuesta del servidor
     })
     .catch(error => {

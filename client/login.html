@@ -25,10 +25,10 @@
 <body class="container">
   <header>
     <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-weight:500">
       <div class="container">
-        <a class="navbar-brand" href="/client/index.html">
-          <img src="img-logo/logo.png" alt="Logo de Mi Sitio" height="70" />
+        <a class="navbar-brand" href="./index.html">
+          <img src="./img-logo/logo.png" alt="Logo de Mi Sitio" height="70" />
         </a>
         <button
           class="navbar-toggler"
@@ -44,26 +44,27 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/client/index.html"
-                ><i class="bi bi-house"></i> INICIO</a
+              <a class="nav-link" href="./index.html"
+                >INICIO</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/client/inscripcion.html">EVENTO </a>
+              <a class="nav-link" id="eventLink" href="./inscripcion.html">EVENTO </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/client/favorito.html">FAVORITO</a>
+              <a class="nav-link" href="./favorito.html">FAVORITO</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/client/nosotros.html">NOSOTROS</a>
+              <a class="nav-link" href="./nosotros.html">NOSOTROS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/client/contacto.html">CONTACTO</a>
+              <a class="nav-link" href="./contacto.html">CONTACTO</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/client/login.html">LOGIN</a>
+            <li class="nav-item" id="login">
             </li>
           </ul>
+        </div>
+        <div id="profile">
         </div>
       </div>
     </nav>
@@ -118,7 +119,7 @@
   <footer class="text-center text-white" style="background-color: #33363F; height: 100px; margin-top: 50px;">
     <div class="d-flex justify-content-center align-items-center h-100">
       <hr class="flex-grow-1 mx-3 border-success" style="height: 10px;">
-        <img src="img-logo/logo.png" alt="Logo" class="img-fluid" style="max-height: 100%; max-width: 100%;">
+        <img src="./img-logo/logo.png" alt="Logo" class="img-fluid" style="max-height: 100%; max-width: 100%;">
       <hr class="flex-grow-1 mx-3 border-success" style="height: 10px;">
     </div>
 
@@ -131,6 +132,7 @@
 
 
 <!--Conexion boostraps 5-->
+<script src="./js/navBar/navBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./js/user/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

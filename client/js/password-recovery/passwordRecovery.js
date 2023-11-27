@@ -13,7 +13,7 @@ form.addEventListener("submit", async (e) => {
     const email =document.querySelector("#floatingInput").value
 
     const urlRecoveryPassword = "https://successful-bear-bandanna.cyclic.app/api/email/password";
-    // const test = "http://127.0.0.1:3000/api/email/password";
+    // const urlRecoveryPassword = "http://127.0.0.1:3000/api/email/password";
 
     try {
         const response = await fetch(urlRecoveryPassword, {
