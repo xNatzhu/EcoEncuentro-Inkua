@@ -2,12 +2,14 @@ const login = document.getElementById('login');
 const profile = document.getElementById('profile');
 const eventLink = document.getElementById('eventLink');
 const tokenNavBar = localStorage.getItem('token');
+const userNavBar = localStorage.getItem('user');
+const objUser = JSON.parse(userNavBar);
 
 if (tokenNavBar) {
     const containerProfile = ` 
         <div class="dropdown">
             <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://avatars.githubusercontent.com/u/87948201?v=4" class="menu-img-profile rounded-circle" alt="" srcset="">
+                <img src="${objUser.img}" class="menu-img-profile rounded-circle" alt="" srcset="">
             </button>
             <ul class="dropdown-menu">
                 <li><a onclick="logOutBtn()" class="dropdown-item" href="#">Cerrar sesión</a></li>

@@ -46,10 +46,14 @@ function loginUser(params) {
             title: "Has ingresado exitosamente",
             confirmButtonColor: "#8db596"
         });  
-       
+        const objUser = {
+            "img": data.userImg,
+            "name": data.name,
+            "id": data._id,
+        }
+        const objUserString = JSON.stringify(objUser);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", data.user);
-
+        localStorage.setItem("user", objUserString);
         window.location.href = "./index.html"
         // Aquí puedes manejar la respuesta del servidor
     })
