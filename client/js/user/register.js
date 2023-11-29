@@ -28,7 +28,7 @@ function registerUser(params) {
     })
     .then(response => {
         if (!response.ok) {
-            console.log(data);
+            console.log(response.message);
             console.log("Error en la solicitud");
             throw new Error('Error en la solicitud');
         }
@@ -51,7 +51,7 @@ function registerUser(params) {
         console.error('Error al realizar la solicitud:', error);
         Swal.fire({
             icon: "error",
-            title: `${data.message}`,
+            title: `${error.message}`,
             confirmButtonColor: "#f27474"
         });
         // Aquí puedes manejar errores en la solicitud

@@ -13,43 +13,66 @@ eventForm.addEventListener("submit", function (e) {
     const category = document.getElementById("category").value;
     const fileInput = document.getElementById("file");
 
-    // Verificar si se seleccionó un archivo
+    console.log(" en event antes de bsucar file")
+
+     //Verificar si se seleccionó un archivo
     if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
+       const file = fileInput.files[0];
 
-        // Crear un lector de archivos
-        const reader = new FileReader();
+       // Crear un lector de archivos
+       const reader = new FileReader();
 
-        // Configurar la función de devolución de llamada cuando la lectura esté completa
-        reader.onloadend = function () {
-            // Obtener los datos en formato base64
+       // Configurar la función de devolución de llamada cuando la lectura esté completa
+       reader.onloadend = function () {
+           // Obtener los datos en formato base64
             const base64Data = reader.result;
-            
+            const userId = JSON.parse(localStorage.getItem("user"));
+
             const params = {
                 "title": title,
                 "location": city,
                 "eventImg": base64Data, // Aquí se agrega la imagen en formato base64
-                "createdBy": userLocalStorage,
+                "createdBy": userId.id,
                 "eventDate": eventDate,
                 "description": description,
                 "category": category,
             };
 
-            registerUser(params);
+            registerEvent(params);
         };
 
         // Leer el archivo como una cadena de datos URL
         reader.readAsDataURL(file);
-    }
+    }else{
+        const userId = JSON.parse(localStorage.getItem("user"));
+        const user = JSON.stringify(userId.id);
+
+        const params = {
+            "title": title,
+            "location": city,
+            //"eventImg": base64Data, // Aquí se agrega la imagen en formato base64
+            "createdBy": userId.id,
+            "eventDate": eventDate,
+            "description": description,
+            "category": category,
+        };
+    
+        registerEvent(params);
+    };
 });
 
-function registerUser(params) {
+function registerEvent(params) {
     const URL = "https://successful-bear-bandanna.cyclic.app/api/events/create";
+    //const URL = "http://127.0.0.1:3000/api/events/create";
+
+    console.log("en rergister")
+    console.log(params)
 
     fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify(params),
     })
@@ -78,4 +101,4 @@ function registerUser(params) {
         });
         // Puedes manejar errores en la solicitud aquí
     });
-}
+};

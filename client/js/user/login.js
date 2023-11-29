@@ -12,13 +12,14 @@ formLogin.addEventListener("submit", function (e) {
         "email": email,
         "password": password
     };
-    console.log(params);
+
     loginUser(params);
 });
 
 
 function loginUser(params) {
     const URL = "https://successful-bear-bandanna.cyclic.app/api/users/login";
+    //const URL = "http://127.0.0.1:8000/api/users/login";
 
     fetch(URL, {
         method: 'POST',
@@ -35,7 +36,8 @@ function loginUser(params) {
                 confirmButtonColor: "#f27474"
             });
             throw new Error('Error en la solicitud');
-        }
+        };
+
         return response.json();
     })
     .then(data => {
@@ -52,8 +54,10 @@ function loginUser(params) {
             "id": data._id,
         }
         const objUserString = JSON.stringify(objUser);
+
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", objUserString);
+
         window.location.href = "./index.html"
         // Aquí puedes manejar la respuesta del servidor
     })
@@ -66,4 +70,4 @@ function loginUser(params) {
         });
         // Aquí puedes manejar errores en la solicitud
     });
-}
+};
