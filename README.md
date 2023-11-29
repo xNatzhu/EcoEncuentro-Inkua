@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Eco Encuemtro </h1>
+  <h1>Eco Encuentro </h1>
   <h2>Proyecto Pasantia INKUA</h2>
 
   ![LOGO](https://github.com/xNatzhu/EcoEncuentro-Inkua/blob/main/client/img-logo/logo.png)
