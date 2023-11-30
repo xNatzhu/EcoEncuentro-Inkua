@@ -3,6 +3,7 @@
 const Message = require("../models/messages");
 const Users = require("../models/users");
 const Events = require("../models/events");
+const { checkInputs } = require("../middleware/securityMiddleware");
 
 module.exports = {
     getMessages : async (req, res) => {
@@ -19,6 +20,10 @@ module.exports = {
     createMessages : async (req, res) => {
         try {
             const { user, event, message } = req.body;
+
+            if(checkInputs({user, event, message})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
             if (!user || !event || !message) {
                 return res.status(400).json({ error: "Faltan campos obligatorios" });
@@ -51,7 +56,6 @@ module.exports = {
     deleteMessage : async (req, res) => {
         try {
             const { messageId } = req.body;
-            console.log(messageId)
 
             const existingMessage = await Message.findById(messageId);
             if (!existingMessage) {
@@ -74,10 +78,11 @@ module.exports = {
     deleteAllMessages : async (req, res) => {
         try {
             await Message.deleteMany({});
+            
             return res.json({ message: "Todos los mensajes han sido eliminados" });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: "Error al eliminar todos los mensajes" });
-        };
-    }
+        };
+    }
 };
