@@ -16,46 +16,53 @@ const users = require("../models/users");
 const { sendResetEmail } = require("../utils/emailSender");
 // Create token for reset password
 const { validationPassword } = require("../utils/validation")
+// Verify posible dangerous data in forms
+const { checkInputs } = require("../middleware/securityMiddleware");
 
 module.exports = {
 
-  // Receibe petition from frontend, and send the email to the user email
-  passwordReset: async function (req, res, next) {
-    try {
-        const { email } = req.body;
-    
-        if(!email){
-            return res.status(400).json({message:  "Email is required."});
-        };
-    
-        const user = await users.findOne({ email });
-    
-        if (!user) {
-            return res.status(404).json({message:  "User not found."});
-        };
-    
-        const token = jwt.sign({
-            email: email,
-        },
-        config.jwtSecret,
-        {
-            expiresIn: '1h',
-        });
-    
-        const userName  = user.name;
-        const resetToken = token; 
-    
-        // Generate link and send via Email to the user
-        const resetLink = `http://127.0.0.1:3000/api/email/passwordRedirect/${resetToken}?email=${email}`;  
-        sendResetEmail(email, resetLink, userName);
-    
-        console.log("redirect Link:" + resetLink);
+    // Receibe petition from frontend, and send the email to the user email
+    passwordReset: async function (req, res, next) {
+        try {
+            const { email } = req.body;
+        
+            if (checkInputs({email})) {
+                return res.status(403).json({ message: `Error verifique la informacion, se detecto un posible peligro en su envio ${email}.` });
+            };
 
-        return res.status(200).json({ message: "Password reset email sent successfully" });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:  "Internal server error."});
-    };},
+            if(!email){
+                return res.status(400).json({message:  "Email is required."});
+            };
+
+            const user = await users.findOne({ email });
+        
+            if (!user) {
+                return res.status(404).json({message:  "User not found."});
+            };
+        
+            const token = jwt.sign({
+                email: email,
+            },
+            config.jwtSecret,
+            {
+                expiresIn: '1h',
+            });
+        
+            const userName  = user.name;
+            const resetToken = token; 
+        
+            // Generate link and send via Email to the user
+            const resetLink = `http://127.0.0.1:3000/api/email/passwordRedirect/${resetToken}?email=${email}`;  
+            sendResetEmail(email, resetLink, userName);
+        
+            console.log("redirect Link:" + resetLink);
+
+            return res.status(200).json({ message: "Password reset email sent successfully" });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({message:  "Internal server error."});
+        };
+    },
 
     /* Redirect user endpoint to Frontend */
     redirect: async function (req, res, next) {
@@ -67,11 +74,8 @@ module.exports = {
         };
 
         // when the user is sended by the email to this endpoint function, redirect the user to the Frontend, with the token and user email.
-        const redirectURL = `http://127.0.0.1:5500/client/password-recovery-confirm.html?token=${token}&email=${email}`; // URL del front.
-        // Test, change on DEPLOY.
+        const redirectURL = `http://127.0.0.1:5500/password-recovery-confirm.html?token=${token}&email=${email}`; // URL del front.
         // URL OF FROTNEND, WE SENDING THE TOKEN AND EMAIL, THE FRONTEND SHOULD SEND THIS FOR THE RECOVER OF PASSWROD
-
-        console.log('Redireccionando a:', redirectURL);
 
         return res.status(302).redirect(redirectURL);
     },
@@ -79,28 +83,32 @@ module.exports = {
     /* request the new password and email (the token is verified at the router) and update the user */
     confirmPasswordReset: async function (req, res, next) {
         try {
-          const { newPassword, email } = req.body;
+            const { newPassword, email } = req.body;
+            console.log(checkInputs({ newPassword, email }))
+            if(checkInputs({ newPassword, email })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
-          if(!newPassword || !email){
-            return res.status(404).json({message: "Email is required."})
-          };
-      
-          const user = await users.findOne({ email });
-      
-          if (!user) {
-            return res.status(404).json({message:  "User not found."});
-          };
-
-          // Hash the new password, and save the user
-          const hashedPassword = validationPassword(newPassword);
-          user.password = hashedPassword;
+            if(!newPassword || !email){
+                return res.status(404).json({message: "Email is required."})
+            };
           
-          await user.save();
+            const user = await users.findOne({ email });
+          
+            if (!user) {
+                return res.status(404).json({message:  "User not found."});
+            };
 
-          return res.status(200).json({ message: "Password reset successful" });
+            // Hash the new password, and save the user
+            const hashedPassword = validationPassword(newPassword);
+            user.password = hashedPassword;
+
+            await user.save();
+
+            return res.status(200).json({ message: "Password reset successful" });
         } catch (error) {
-          console.error(error);
-          return res.status(500).json({message:  "Internal server error."});
+            console.error(error);
+            return res.status(500).json({message:  "Internal server error."});
         };
     }  
 };
