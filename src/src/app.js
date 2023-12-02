@@ -1,6 +1,6 @@
 "use strict";
 
-// Server default port is 3000 //
+// Server default port is 8000 //
 
 const createError = require("http-errors");
 const express = require("express");
@@ -8,7 +8,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const { logGenerator } = require('./logs/logs');
-const cors = require("./middleware/corsMiddleware");
+const cors = require("cors");
+const { corsConfig } = require("./middleware/corsMiddleware");
 
 // Database
 const db = require("./config");
@@ -31,7 +32,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Cors
-app.use(cors);
+app.use(cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    headers: ["Content-Type", "Authorization"]
+}));
 
 // Logs
 app.use(logGenerator);

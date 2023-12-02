@@ -1,6 +1,5 @@
 "use strict";
 
-const { check } = require("express-validator");
 const rateLimit = require("express-rate-limit");
 
 function ipCheck(req, res, next) {
@@ -17,10 +16,25 @@ function ipCheck(req, res, next) {
     next();
 };
 
-function sanitizerInputs(input) {
-    const sanitizedInput = check(input).trim().escape().blacklist('<>\\&\""=;(){}[]`$%#^?*@!~+-|_:,'); 
+function checkInputs(input) {
+    const dangerousCharacters = /[<>\\&\"'=;{}[\]`$%#^?*!~+\-|,]/;
 
-    return sanitizedInput;
+    if (typeof input === 'object') {
+        for (const key in input) {
+            if (input.hasOwnProperty(key)) {
+                const data = input[key];
+                if (dangerousCharacters.test(data)) {
+                    return true;
+                };
+            };
+        };
+    }else{
+        if (dangerousCharacters.test(input)) {
+            return true;
+        };
+    };
+
+    return false;
 };
 
 const apiLimiter = rateLimit({
@@ -31,6 +45,6 @@ const apiLimiter = rateLimit({
 
 module.exports = {
     ipCheck,
-    sanitizerInputs,
+    checkInputs,
     apiLimiter
 };

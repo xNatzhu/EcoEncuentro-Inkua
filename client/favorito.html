@@ -46,14 +46,14 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" href="./index.html"
-                ><i class="bi bi-house"></i> INICIO</a
+                >INICIO</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./inscripcion.html">EVENTO </a>
+              <a class="nav-link" id="eventLink" href="./inscripcion.html">EVENTO </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./favorito.html">FAVORITO</a>
+              <a class="nav-link active" href="./favorito.html">FAVORITO</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./nosotros.html">NOSOTROS</a>
@@ -61,10 +61,11 @@
             <li class="nav-item">
               <a class="nav-link" href="./contacto.html">CONTACTO</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./login.html">LOGIN</a>
+            <li class="nav-item" id="login">
             </li>
           </ul>
+        </div>
+        <div id="profile">
         </div>
       </div>
     </nav>
@@ -86,11 +87,6 @@
     </div>
   </main>
 
-  <!--Se agrega botón por si el usuario quiere crear un evento-->
-  <div class="d-grid gap-2 col-6 mx-auto mt-5">
-    <a href="./crear_evento.html" class="btn btn-outline-success" role="button">Crear evento</a>
-  </div>
-
   <footer class="text-center text-white" style="background-color: #33363F; height: 100px; margin-top: 50px;">
     <div class="d-flex justify-content-center align-items-center h-100">
       <hr class="flex-grow-1 mx-3 border-success" style="height: 10px;">
@@ -107,6 +103,7 @@
 
 
 <!--Conexion boostraps 5-->
+<script src="./js/navBar/navBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"

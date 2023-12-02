@@ -1,13 +1,11 @@
 "use strict";
 
-const cors = require('cors');
-
 function corsConfig(req, res, next) {
-    const corsOptions = {
-        origin: '*' // To modify, in prod
-    };
-    
-    cors(corsOptions)(req, res, next);
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    next();
 };
 
-module.exports = corsConfig;
+module.exports = { corsConfig };

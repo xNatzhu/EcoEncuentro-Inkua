@@ -33,74 +33,63 @@
     <title>EcoEncuentro</title>
   </head>
 
-  <body class="container">
-    <header>
-      <!-- Barra de navegación -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-weight:500">
-        <div class="container">
-          <a class="navbar-brand" href="./index.html">
-            <img src="./img-logo/logo.png" alt="Logo de Mi Sitio" height="70" />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"><img src="" alt="" /></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="./index.html"
-                  ><i class="bi bi-house"></i> INICIO</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./inscripcion.html">EVENTO </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./favorito.html">FAVORITO</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./nosotros.html">NOSOTROS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./contacto.html">CONTACTO</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./login.html">LOGIN</a>
-              </li>
-            </ul>
-          </div>
+<body class="container">
+  <header>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-weight:500">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">
+          <img src="./img-logo/logo.png" alt="Logo de Mi Sitio" height="70" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"><img src="" alt="" /></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html"
+                >INICIO</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="eventLink" href="./inscripcion.html">EVENTO </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./favorito.html">FAVORITO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./nosotros.html">NOSOTROS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./contacto.html">CONTACTO</a>
+            </li>
+            <li class="nav-item" id="login">
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
-    <!--Cuerpo del formulario-->
-        <!--PORTADA-->
-     <!-- <div class="container mt-4 position-relative">
-      <img
-        src="./img-portadas/Contacto.png"
-        class="img-fluid"
-        alt="Imagen de portada"
-        style="width: 100%"
-      />
-     -->
-     <!-- <div
-        class="position-absolute top-50 start-50 text-center translate-middle ms-n5"
-      >
-        <h1 class="text-success">CONTACTO</h1>
-      </div> -->
-    </div>
-    <div class="container mt-5">
-      <h1 class="text-center text-success">Conéctate con Nosotros</h1>
-      <p class="text-center">
+        <div id="profile">
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!--PORTADA-->
+<div class="container mt-4 position-relative">
+  <img src="img-portadas/Contacto.png" class="img-fluid" alt="Imagen de portada" style="width: 100%;"/>
+  </div>
+  <div class="container mt-5">
+    <h1 class="text-center text-success">Conéctate con nosotros</h1>
+    <p class="text-center mb-5">
         Contáctanos y empecemos a tener juntos un mundo más verde y limpio
       </p>
-    </div>
+    </div> 
     <main>
       <div class="container-fluid ps-md-0">
         <div class="row g-0">
@@ -111,14 +100,13 @@
                 <div class="row">
                   <div class="col-md-9 col-lg-8 mx-auto">
                     <h3 class="login-heading mb-4 sub-title">Contacto</h3>
-
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"></label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre">
+        <input type="text" class="form-control" id="name" placeholder="Nombre">
         <label for="exampleFormControlInput1" class="form-label"></label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+        <input type="email" class="form-control" id="email" placeholder="Email">
         <label for="exampleFormControlInput1" class="form-label"></label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Asunto">
+        <input type="text" class="form-control" id="affair" placeholder="Asunto">
 
       </div>
       <div class="mb-3">
@@ -129,6 +117,7 @@
       <div class="d-grid">
         <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Enviar</button>
       </div>
+
     </main>
 
     <footer
@@ -154,6 +143,7 @@
   </body>
 
   <!--Conexion boostraps 5-->
+  <script src="./js/navBar/navBar.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

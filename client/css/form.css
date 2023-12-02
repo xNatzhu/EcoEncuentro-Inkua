@@ -1,5 +1,4 @@
 .login {
-    min-height: 100vh;
     background: url('../Imagenes-cards/Marco.png') no-repeat center center;
   }
   
@@ -7,30 +6,35 @@
     background-image: url('https://www.argentina.gob.ar/sites/default/files/aguara_guazu_pn_pilcomayo_alvaro_becerra_perez_05.jpg');
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
   }
   
   .bg-image-register {
     background-image: url('https://static.nationalgeographicla.com/files/styles/image_3200/public/01_oceancreatures_mjed49.jpg?w=1600&h=900');
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
   }
   
   .bg-image-password-recovery {
     background-image: url('https://www.machupicchuterra.com/wp-content/uploads/parque-gueppi-sekime-media.jpg?w=1600&h=900');
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
   }
   
   .bg-image-contacto {
     background-image: url('http://www.minec.gob.ve/wp-content/uploads/2019/01/2_guacamaya_22141_1_600.jpg');
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
   }
 
   .bg-image-password-recovery-confirm {
     background-image: url('https://cuentamedelunicel.files.wordpress.com/2019/05/plantacion.jpg');
     background-size: cover;
     background-position: center;
+    border-radius: 5px;
   }
 
   .btn-login {
@@ -54,4 +58,14 @@
   
   .register{
     color: #448334;
+}
+
+textarea{
+   min-height: 100px !important;
+}
+
+
+textarea:focus{
+  box-shadow: none !important;
+  border: 2px solid #448334 !important;
 }

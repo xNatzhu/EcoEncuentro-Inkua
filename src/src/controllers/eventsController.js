@@ -1,8 +1,9 @@
 "use strict";
 
-const Event = require('../models/events');
+const Event = require("../models/events");
 const User = require("../models/users");
 const { geoLocalization } = require("../utils/geoLocalization");
+const { checkInputs } = require("../middleware/securityMiddleware");
 
 module.exports = {
 
@@ -14,12 +15,12 @@ module.exports = {
             const allEvents = await Event.find();
 
             if (!allEvents || allEvents.length === 0) {
-                return res.status(404).json({ message: 'Eventos no encontrados.' });
+                return res.status(404).json({ message: "Eventos no encontrados." });
             };
             return res.json({ eventos: allEvents });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },
 
@@ -31,24 +32,28 @@ module.exports = {
 
 
             if (!getEvent || getEvent.length === 0) {
-                return res.status(404).json({ message: 'Eventos no encontrados.' });
+                return res.status(404).json({ message: "Eventos no encontrados." });
             };
 
             return res.json({ eventos: getEvent });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },    
 
     createEvents: async function (req, res, next) {
         try {
-            const { title, location, eventImg, createdBy, eventDate, description, category } = req.body;
+            const { title, location, createdBy, eventDate, description, category } = req.body;
+
+            if(checkInputs({title, location, createdBy, eventDate, description, category})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
             const eventOwner = await User.findOne({ _id: createdBy });
 
             if (!title || !location || !createdBy || !eventDate || !description || !category) {
-                return res.status(400).json({ message: 'Faltan campos requeridos en la solicitud.' });
+                return res.status(400).json({ message: "Faltan campos requeridos en la solicitud." });
             };
 
             if(!eventOwner){
@@ -65,9 +70,11 @@ module.exports = {
                 category
             };
 
+            checkInputs(eventData);
+
             const validCategories = ["Árboles", "Hogar", "Industria", "Animales", "Contaminación", "Basurales", "Energía", "Fauna marina"];
             if (!validCategories.includes(category)) {
-                return res.status(400).json({ message: 'Categoría no válida.' });
+                return res.status(400).json({ message: "Categoría no válida." });
             };
 
             const map = await geoLocalization(location);
@@ -99,14 +106,14 @@ module.exports = {
             await eventOwner.save();
 
             return res.status(201).json({
-                message: `Evento ${title} creado exitosamente.`,
+                message: Evento ${title} creado exitosamente.,
                 mapLink: map,
                 evento: eventData
             });
 
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },
 
@@ -114,14 +121,18 @@ module.exports = {
         try {
             const { eventId, userId } = req.body;
 
+            if(checkInputs({ eventId, userId })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
+
             const event = await Event.findById(eventId);
             const user = await User.findById(userId);
 
             if (!event) {
-                return res.status(404).json({ message: 'Evento no encontrado.' });
+                return res.status(404).json({ message: "Evento no encontrado." });
             };
 
-            for(const users of event.usersJoined){
+            for(const users of event.usersJoined.userId){ // modified after change the userJoined from _id to array
                 if(users == userId){
                     return res.status(400).json({ message: "El usuario ya se encuentra subscripto al evento."})
                 };
@@ -144,10 +155,18 @@ module.exports = {
 
             await user.save();
 
-            return res.status(200).json({ message: `El usuario ${userId} se unió al evento.` });
+            // send event email > to verify if works
+            const eventDate = {
+                title: event.title,
+                eventDate: event.eventDate,
+                map: event.map
+            };
+            sendEVentEmail(user.email, eventDate, user.name);
+
+            return res.status(200).json({ message: El usuario ${userId} se unió al evento. });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },
 
@@ -155,18 +174,20 @@ module.exports = {
         try { 
             // Filter and includes doesnt work after change the schema, to review
             const { eventId, userId } = req.body;
+
+            if(checkInputs({ eventId, userId })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
             
             const event = await Event.findById(eventId);
             const user = await User.findById(userId);
     
-            console.log(user.events)
-            console.log(event.usersJoined)
             if (!event) {
-                return res.status(404).json({ message: 'Evento no encontrado.' });
+                return res.status(404).json({ message: "Evento no encontrado." });
             };
     
             if (!user) {
-                return res.status(404).json({ message: 'Usuario no encontrado.' });
+                return res.status(404).json({ message: "Usuario no encontrado." });
             };
     
             if (!user.events.userId.includes(eventId) || !event.usersJoined.includes(userId)) {
@@ -179,16 +200,20 @@ module.exports = {
             await user.save();
             await event.save();
     
-            return res.status(200).json({ message: `El usuario ${userId} abandonó el evento.` });
+            return res.status(200).json({ message: El usuario ${userId} abandonó el evento. });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },
 
     updateEvent: async function (req, res, next){
         try{
             const { userId, eventId, title, location, eventImg, eventDate, description, category } = req.body;
+
+            if(checkInputs({title, location, createdBy, eventDate, description, category})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
             const event = Event.findById(eventId);
 
@@ -203,14 +228,14 @@ module.exports = {
             if (eventImg) {
                 let eventImgData;
                 let eventImgFileName;
-                if (eventImg.startsWith('data:image/')) {
+                if (eventImg.startsWith("data:image/")) {
                     eventImgData = eventImg;
-                    eventImgFileName = `${event._id}.png`;
+                    eventImgFileName = ${event._id}.png;
                 } else {
-                    eventImgData = Buffer.from(eventImg).toString('base64');
-                    eventImgFileName = `${event._id}.png`;
+                    eventImgData = Buffer.from(eventImg).toString("base64");
+                    eventImgFileName = ${event._id}.png;
                 };
-                const neweventImgPath = path.join(__dirname, '..', 'assets', 'events', eventImgFileName);
+                const neweventImgPath = path.join(__dirname, "..", "assets", "events", eventImgFileName);
                 fs.writeFileSync(neweventImgPath, eventImgData);
                 event.eventImg = eventImgFileName;
             };
@@ -225,9 +250,9 @@ module.exports = {
 
             await event.save();
 
-            return res.status(200).json({ message: `El evento ${title}, ${eventId} fue actualizado.`})
+            return res.status(200).json({ message: El evento ${title}, ${eventId} fue actualizado.})
         } catch(error){
-            return res.status(500).json({ message: 'Error interno del servidor.' + error });
+            return res.status(500).json({ message: "Error interno del servidor." + error });
         };
     },
 
@@ -236,22 +261,27 @@ module.exports = {
             const { userDeleting } = req.body;
             const { eventId } = req.params;
 
+            if(checkInputs({ userDeleting })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
+                        
+
             const event =  await Event.findOne({eventId});
 
             // Modify this search created by to work
             if(userDeleting !== event.createdBy.eventOwnedId.valueOf()){
-                return res.status(403).json({ message: 'No autorizado, solo el creado del evento puede eliminarlo.' });
+                return res.status(403).json({ message: "No autorizado, solo el creado del evento puede eliminarlo." });
             };
 
             const deletedEvent = await Event.findByIdAndDelete(eventId);
             if (!deletedEvent) {
-                return res.status(404).json({ message: 'Evento no encontrado.' });
+                return res.status(404).json({ message: "Evento no encontrado." });
             };
 
-            return res.status(200).json({ message: `El evento ${deletedEvent.title} fue eliminado.` });
+            return res.status(200).json({ message: El evento ${deletedEvent.title} fue eliminado. });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
     },
     
@@ -259,11 +289,11 @@ module.exports = {
         try {
             const deletedEvent = await Event.deleteMany({});
 
-            return res.status(200).json({ message: `Eventos eliminados.` });
+            return res.status(200).json({ message: Eventos eliminados. });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor.' });
+            return res.status(500).json({ message: "Error interno del servidor." });
         };
-    }
-        
+    }
+        
 };
