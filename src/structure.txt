@@ -1,0 +1,55 @@
+node_modules/
+src/
+    bin/
+        www.js
+    controllers/
+        eventsController.js
+        usersController.js
+        messagesController.js
+        emailController.js
+    logs/
+        auth.js
+        logs.js
+    Public/
+        stylesheets/
+            style.css
+    models/
+        events.js
+        users.js
+        messages.js
+        email.js
+    routes/
+        eventsRouter.js
+        usersRouter.js
+        indexRouter.js
+        messagesRouter.js
+        emailRouter.js
+    utils/
+        emailSender.js
+        emailStyles.js
+        errorHandler.js
+        geoLocalization.js
+        validation.js
+    middleware/
+        authMiddleware.js
+        securityMiddleware.js
+        corsMiddleware.js
+    views/
+        error.ejs
+        index.ejs
+    assets/
+        events/
+            eventsImages
+        users/
+            usersImages
+    app.js
+    config.js
+.env
+.env.test
+README.md
+.gitignore
+package.json
+package-lock.json
+
+
+

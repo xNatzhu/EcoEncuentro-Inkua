@@ -11,9 +11,10 @@
 
 const jwt = require('jsonwebtoken');
 const config = require('../middleware/authMiddleware');
-const users = require("../models/users");
+const Users = require("../models/users");
+const Emails = require("../models/emails");
 // Email send function
-const { sendResetEmail } = require("../utils/emailSender");
+const { sendResetEmail, contactEmail } = require("../utils/emailSender");
 // Create token for reset password
 const { validationPassword } = require("../utils/validation")
 // Verify posible dangerous data in forms
@@ -34,7 +35,7 @@ module.exports = {
                 return res.status(400).json({message:  "Email is required."});
             };
 
-            const user = await users.findOne({ email });
+            const user = await Users.findOne({ email });
         
             if (!user) {
                 return res.status(404).json({message:  "User not found."});
@@ -84,7 +85,9 @@ module.exports = {
     confirmPasswordReset: async function (req, res, next) {
         try {
             const { newPassword, email } = req.body;
-            console.log(checkInputs({ newPassword, email }))
+
+            console.log(checkInputs({ newPassword, email }));
+
             if(checkInputs({ newPassword, email })){
                 return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
             };
@@ -93,7 +96,7 @@ module.exports = {
                 return res.status(404).json({message: "Email is required."})
             };
           
-            const user = await users.findOne({ email });
+            const user = await Users.findOne({ email });
           
             if (!user) {
                 return res.status(404).json({message:  "User not found."});
@@ -110,5 +113,70 @@ module.exports = {
             console.error(error);
             return res.status(500).json({message:  "Internal server error."});
         };
-    }  
+    },
+
+    getContactEmail: async function(req, res, next){
+        try{
+            const allEmails = await Emails.find();
+
+            if (!allEmails || allEmails.length === 0) {
+                return res.status(404).json({ message: "Emails no encontrados." });
+            };
+
+            return res.json({ Emails: allEmails });
+        
+        }catch(err){
+            console.error(err);
+            return res.status(500).json({message:  "Internal server error."});
+        };
+    },
+
+    createContactEmail: async function(req, res, next){
+        try{
+            let { name, email, affair, message } = req.body;
+
+            if(checkInputs({ email, affair, message })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
+
+            if(!email || !affair || !message){
+                return res.status(400).json({ message: "Los campos email, affair y message son obligatorios." });
+            };
+
+            if(!name){
+                name = email;
+            }else{
+                if(checkInputs({ name })){;
+                    return res.status(403).json({ message: "Error, verifique la información del nombre, se detectó un posible peligro." });
+                };
+            };
+
+            const emailData = new Emails ({
+                name, 
+                email, 
+                affair, 
+                message
+            });
+
+            contactEmail(name, email, affair, message);
+
+            await emailData.save();
+
+            return res.status(201).json({ message : `Email de ${email} enviado satisfactoriamente.`})
+        }catch(err){
+            console.error(err);
+            return res.status(500).json({message:  "Internal server error."});
+        };
+    },
+
+    deleteContactsEmails: async function(req, res, next){
+        try{
+            const deletedEmails = await Emails.deleteMany({});
+
+            return res.status(200).json({ message: `Emails eliminados.` });
+        }catch(err){
+            console.error(err);
+            return res.status(500).json({message:  "Internal server error."});
+        };
+    },
 };

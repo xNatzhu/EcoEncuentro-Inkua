@@ -20,6 +20,6 @@ router.post("/create", jsonWebTokenVerify, apiLimiter, createMessages);
 
 // Delete specific Messages based on email (must be the same as the creator)
 router.delete("/delete", jsonWebTokenVerify, apiLimiter, deleteMessage);
-router.delete("/deleteall", apiLimiter, deleteAllMessages);
+// router.delete("/deleteall", deleteAllMessages);
 
 module.exports = router;

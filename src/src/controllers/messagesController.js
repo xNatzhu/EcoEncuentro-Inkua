@@ -83,6 +83,6 @@ module.exports = {
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: "Error al eliminar todos los mensajes" });
-        };
-    }
+        };
+    }
 };

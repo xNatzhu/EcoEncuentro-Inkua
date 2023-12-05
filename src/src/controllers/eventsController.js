@@ -65,7 +65,7 @@ module.exports = {
                 location,
                 createdBy,
                 eventDate,                
-                eventImg,
+                //eventImg,
                 description,
                 category
             };
@@ -90,7 +90,7 @@ module.exports = {
                 },
                 eventDate,
                 map,
-                eventImg,
+                //eventImg,
                 description,
                 category
             });
@@ -106,7 +106,7 @@ module.exports = {
             await eventOwner.save();
 
             return res.status(201).json({
-                message: Evento ${title} creado exitosamente.,
+                message: `Evento ${title} creado exitosamente.`,
                 mapLink: map,
                 evento: eventData
             });
@@ -163,7 +163,7 @@ module.exports = {
             };
             sendEVentEmail(user.email, eventDate, user.name);
 
-            return res.status(200).json({ message: El usuario ${userId} se unió al evento. });
+            return res.status(200).json({ message: `El usuario ${userId} se unió al evento.` });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: "Error interno del servidor." });
@@ -200,7 +200,7 @@ module.exports = {
             await user.save();
             await event.save();
     
-            return res.status(200).json({ message: El usuario ${userId} abandonó el evento. });
+            return res.status(200).json({ message: `El usuario ${userId} abandonó el evento.` });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: "Error interno del servidor." });
@@ -230,10 +230,10 @@ module.exports = {
                 let eventImgFileName;
                 if (eventImg.startsWith("data:image/")) {
                     eventImgData = eventImg;
-                    eventImgFileName = ${event._id}.png;
+                    eventImgFileName = `${event._id}.png`;
                 } else {
                     eventImgData = Buffer.from(eventImg).toString("base64");
-                    eventImgFileName = ${event._id}.png;
+                    eventImgFileName = `${event._id}.png`;
                 };
                 const neweventImgPath = path.join(__dirname, "..", "assets", "events", eventImgFileName);
                 fs.writeFileSync(neweventImgPath, eventImgData);
@@ -250,7 +250,7 @@ module.exports = {
 
             await event.save();
 
-            return res.status(200).json({ message: El evento ${title}, ${eventId} fue actualizado.})
+            return res.status(200).json({ message: `El evento ${title}, ${eventId} fue actualizado.`})
         } catch(error){
             return res.status(500).json({ message: "Error interno del servidor." + error });
         };
@@ -278,7 +278,7 @@ module.exports = {
                 return res.status(404).json({ message: "Evento no encontrado." });
             };
 
-            return res.status(200).json({ message: El evento ${deletedEvent.title} fue eliminado. });
+            return res.status(200).json({ message: `El evento ${deletedEvent.title} fue eliminado.` });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: "Error interno del servidor." });
@@ -289,11 +289,11 @@ module.exports = {
         try {
             const deletedEvent = await Event.deleteMany({});
 
-            return res.status(200).json({ message: Eventos eliminados. });
+            return res.status(200).json({ message: `Eventos eliminados.` });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: "Error interno del servidor." });
         };
-    }
-        
+    }
+        
 };

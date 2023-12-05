@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validationPassword, validationEmail } = require("../utils/validation")
 const config = require('../middleware/authMiddleware');
+const { checkInputs } = require("../middleware/securityMiddleware");
 
 // Img
 const fs = require('fs');
@@ -30,6 +31,10 @@ module.exports = {
     createUsers: async function (req, res, next) {
         try {
             const { name, email, password, userImg } = req.body;
+
+            if(checkInputs({name, email, password})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
             if (!name || !email || !password) {
                 return res.status(400).json({ message: 'Faltan propiedades requeridas del usuario.' });
@@ -81,7 +86,7 @@ module.exports = {
                 }
             );
 
-            return res.json({ message: 'Usuario creado exitosamente.', token, _id: newUser._id});
+            return res.json({ message: 'Usuario creado exitosamente.', token, _id: newUser._id, name: newUser.name, userImg: newUser.userImg });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: 'Error interno del servidor.' });
@@ -91,6 +96,10 @@ module.exports = {
     loginUsers: async function (req, res, next) {
         try {
             const { email, password } = req.body;
+
+            if(checkInputs({email, password})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
 
             const user = await users.findOne({ email });
 
@@ -115,7 +124,7 @@ module.exports = {
                 }
             );
 
-            return res.json({ message: 'Usuario creado exitosamente.', token, _id: user._id});
+            return res.json({ message: 'Usuario loggeado.', token, _id: user._id, name: user.name, userImg: user.userImg});
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: 'Error interno del servidor.' });
@@ -125,6 +134,11 @@ module.exports = {
     userUpdate: async function (req, res, next) {
         try {
             const { email, name, password, userImg } = req.body;
+
+            if(checkInputs({email, name, password})){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
+
             const user = await users.findOne({ email });
 
             if (!user) {
@@ -173,7 +187,10 @@ module.exports = {
         try {
             const { userId } = req.body;
             const { emailToDelete } = req.params;
-            console.log(userId, emailToDelete);
+            
+            if(checkInputs({ userId })){
+                return res.status(403).json({ message: "Error verifique la informacion, se detecto un posible peligro"})
+            };
     
             const user = await users.findOne({ email: emailToDelete });
     
@@ -209,5 +226,4 @@ module.exports = {
             return errorHandler(500, "Internal server error.", res);
         };
     }
-
 };

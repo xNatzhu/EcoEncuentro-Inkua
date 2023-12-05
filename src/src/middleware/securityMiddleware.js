@@ -17,7 +17,7 @@ function ipCheck(req, res, next) {
 };
 
 function checkInputs(input) {
-    const dangerousCharacters = /[<>\\&\"'=;{}[\]`$%#^?*!~+\-|,]/;
+    const dangerousCharacters = /<>/;
 
     if (typeof input === 'object') {
         for (const key in input) {

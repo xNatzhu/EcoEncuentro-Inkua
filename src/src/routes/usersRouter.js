@@ -10,11 +10,11 @@ const { ipCheck, apiLimiter } = require("../middleware/securityMiddleware");
 /***** "/users" defined at app.js *****/
 
 // Get users.
-router.get('/', apiLimiter, jsonWebTokenVerify, getUsers);
-router.all('/', apiLimiter, badMethod)
+// router.get('/', jsonWebTokenVerify, apiLimiter, getUsers);
+router.all('/', badMethod)
 
 // Create users.
-router.post('/create', apiLimiter, createUsers);
+router.post('/create', createUsers);
 // Login.
 router.post('/login', loginUsers);
 // Update.
@@ -25,6 +25,6 @@ router.delete('/delete/:emailToDelete', jsonWebTokenVerify, apiLimiter, deleteUs
 //router.all('/delete', badMethod)
 
 // Clear users, just for dev mode.
-router.delete('/deleteall', apiLimiter, deleteAllUsers);
+//router.delete('/deleteall', deleteAllUsers);
 
 module.exports = router;

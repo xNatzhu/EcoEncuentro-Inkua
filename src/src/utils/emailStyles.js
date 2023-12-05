@@ -2,19 +2,20 @@
  * @param {string} resetLink
  * @param {string} userName
  * @returns {string}
- */
+*/
 "use strict";
 
 function htmlResetEmail(resetLink, userName) {
-  // Logo Img
-  const logo = "https://i.postimg.cc/TptpbPBF/Isologotipo.png";
 
-  const firstLetter = userName.charAt(0);
-  const rest = userName.slice(1);
-  const name = firstLetter.toUpperCase() + rest;
+    // Logo Img
+    const logo = "https://i.postimg.cc/TptpbPBF/Isologotipo.png"
 
-  // Style added directly as HTML
-  return `
+    const firstLetter = userName.charAt(0);
+    const rest = userName.slice(1);
+    const name =  firstLetter.toUpperCase() + rest;
+
+    // Style added directly as HTML
+    return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; color:black;">
             <img src="${logo}" style="width: 100px; height: auto; margin-bottom: 20px;" alt='Eco-encuentro logo' title="Eco-encuentro Logo"/>
             <h1 style="color: #61AE4E;">Hola, ${name}</h1>
@@ -27,15 +28,16 @@ function htmlResetEmail(resetLink, userName) {
             <p>Si no has solicitado esto, por favor ignora este correo electrónico.</p>
         </div>
     `;
-}
+};
 
-function htmlEeventEmail(eventData, userName) {
-  const { title, eventDate, map } = eventData;
-  const logo = "https://i.postimg.cc/TptpbPBF/Isologotipo.png";
-  const date = new SimpleDateFormat(eventDate);
+function htmlEventEmail(eventData, userName) {
+    
+    const { title, eventDate, map } = eventData;
+    const logo = "https://i.postimg.cc/TptpbPBF/Isologotipo.png";
+    const date = eventDate;
 
-  // Template literals for cleaner HTML structure
-  return `
+    // Template literals for cleaner HTML structure
+    return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; color: black;">
             <img src="${logo}" style="width: 100px; height: auto; margin-bottom: 20px;" alt="Eco-encuentro logo" title="Eco-encuentro Logo"/>
             <h1 style="color: #61AE4E;">Hola, ${userName}</h1>
@@ -48,9 +50,26 @@ function htmlEeventEmail(eventData, userName) {
             <iframe src="${map}" style="width: 100%; height: 300px; border: 0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     `;
-}
+};
+
+function htmlMailContact(name, message, email) {
+    const logo = "https://i.postimg.cc/TptpbPBF/Isologotipo.png";
+
+    return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; color: black;">
+        <img src="${logo}" style="width: 100px; height: auto; margin-bottom: 20px;" alt="Eco-encuentro logo" title="Eco-encuentro Logo"/>
+        <h1 style="color: #61AE4E;">Email enviado por ${name}, email ${email}</h1>
+        <p style="font-size: 18px; margin-bottom: 20px;">Mensaje: </p>
+        <br>
+        <br>
+        <br>
+        <p style="font-size: 18px; margin-bottom: 20px;">${message}</p>
+    </div>
+`;
+};
 
 module.exports = {
-  htmlResetEmail,
-  htmlEeventEmail,
+    htmlResetEmail,
+    htmlEventEmail,
+    htmlMailContact
 };
