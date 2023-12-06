@@ -7,6 +7,7 @@
 </div>
 ¿DE QUE 
 SE TRATA? <br/>
+
 Esta plataforma se dedica a 
 fomentar la participación en 
 actividades de voluntariado 
